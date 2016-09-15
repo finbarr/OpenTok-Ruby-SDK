@@ -23,6 +23,17 @@ module OpenTok
       @api_key = api_key
     end
 
+    def signal(opts)
+      opts.extend(HashExtensions)
+      response = self.class.post("/v2/project/#{@api_key}/session/#{opts[:session_id]}/signal", body: opts[:data].to_json)
+      case response.code
+      when 200
+        response
+      when 400
+        raise
+      end
+    end
+
     def create_session(opts)
       opts.extend(HashExtensions)
       response = self.class.post("/session/create", :body => opts.camelize_keys!)
