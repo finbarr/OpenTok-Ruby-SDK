@@ -29,6 +29,7 @@ module OpenTok
         headers: { 'Content-Type' => 'application/json' },
         body: opts[:data].to_json
       })
+      byebug
       case response.code
       when 200
         response
