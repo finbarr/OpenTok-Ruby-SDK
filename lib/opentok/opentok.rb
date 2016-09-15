@@ -167,6 +167,10 @@ module OpenTok
       Session.new api_key, api_secret, response['sessions']['Session']['session_id'], opts
     end
 
+    def signal(opts)
+      client.signal(opts)
+    end
+
     # An Archives object, which lets you work with OpenTok archives.
     def archives
       @archives ||= Archives.new client

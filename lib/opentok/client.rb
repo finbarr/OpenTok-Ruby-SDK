@@ -25,7 +25,10 @@ module OpenTok
 
     def signal(opts)
       opts.extend(HashExtensions)
-      response = self.class.post("/v2/project/#{@api_key}/session/#{opts[:session_id]}/signal", body: opts[:data].to_json)
+      response = self.class.post("/v2/project/#{@api_key}/session/#{opts[:session_id]}/signal", {
+        headers: { 'Content-Type' => 'application/json' },
+        body: opts[:data].to_json
+      })
       case response.code
       when 200
         response
